@@ -1,66 +1,75 @@
-# 🔧 MacChanger
+# 🔧 MacChanger  
 
-This Python script allows you to easily change the MAC address of a network interface (e.g. `eth0`, `wlan0`) on Linux systems. This is especially useful in pentesting systems like Kali Linux when you want to hide or change your MAC address.
+This Python script allows you to easily change the MAC address of a network interface (e.g., `eth0`, `wlan0`) on Linux systems. It is particularly useful for privacy or penetration testing purposes, such as on Kali Linux, where you may want to spoof or randomize your MAC address.  
 
----
+---  
 
-## 🚀 Features
+## 🚀 Features  
 
-- Changes the MAC address of a specific interface as desired.
-- Automatically detects the current MAC address.
-- Verifies whether it was successful or not.
-- Provides easy operation via the terminal.
+- Changes the MAC address of a specified interface to your desired value.  
+- Automatically detects the current MAC address.  
+- Verifies whether the change was successful.  
+- Provides a simple command-line interface.  
 
----
+---  
 
-## 🧠 How does it work?
+## 🧠 How It Works?  
 
-1. The interface name (`eth0`, `wlan0` etc.) and the new MAC address are obtained from the user.
-2. The network interface is temporarily closed with `ifconfig` commands.
-3. The MAC address is changed.
-4. The interface is turned back on.
-5. The operation is verified by checking the new MAC address.
+1. Takes the interface name (e.g., `eth0`, `wlan0`) and the new MAC address as user input.  
+2. Temporarily disables the network interface using `ifconfig`.  
+3. Changes the MAC address.  
+4. Re-enables the interface.  
+5. Verifies the new MAC address to confirm the change.  
 
----
+---  
 
-## 🛠️ Requirements
+## 🛠️ Requirements  
 
-- Python 3
-- A Linux-based system
-- Root (administrator) privileges
+- Python 3  
+- A Linux-based system  
+- Root (administrator) privileges  
 
----
+---  
 
-## 🔍 Usage
+## 🔍 Usage  
 
-``bash
-sudo python3 macChanger.py -i <interface_name> -m <new_mac_address>
-```
+```bash  
+sudo python3 macChanger.py -i <interface_name> -m <new_mac_address>  
+```  
 
-### Example:
+### Example:  
 
-``bash
-sudo python3 macChanger.py -i eth0 -m 00:11:22:33:44:55
-```
+```bash  
+sudo python3 macChanger.py -i eth0 -m 00:11:22:33:44:55  
+```  
 
----
+---  
 
-## 📦 About Code
+## 📦 About the Code  
 
-``python
-def get_user_input():
-    # get interface and MAC information from terminal with argparse
-```
+```python  
+def get_user_input():  
+    # Uses argparse to get interface and MAC address from the terminal  
+```  
 
-``python
-def change_mac_address(interface, new_mac):
-    # close the interface with ifconfig, change the MAC and reopen
+```python  
+def change_mac_address(interface, new_mac):  
+    # Uses ifconfig to disable the interface, change MAC, and re-enable it  
+```  
 
-``python
-def get_current_mac(interface):
-    # Get current MAC address with regex from ifconfig output
-```
+```python  
+def get_current_mac(interface):  
+    # Extracts the current MAC address from ifconfig output using regex  
+```  
 
-At the end of the code, the transaction is verified with checkin
+At the end of the script, the new MAC address is checked to confirm the change, ensuring a reliable result for the user.  
 
-Translated with DeepL.com (free version)
+---  
+
+## 🧪 Security Notes  
+
+- MAC address changes are **not permanent**. Rebooting the system may revert it to the original.  
+- Ensure the new MAC address follows a valid format (e.g., `00:11:22:33:44:55`).  
+- Some network cards may not support random MAC address assignments.  
+
+---  
